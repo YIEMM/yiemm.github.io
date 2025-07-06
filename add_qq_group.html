@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type='text/css' rel='stylesheet' href='css/add_qq_group.css'>
+    <title>QQ-Group</title>
+    <button id="back-button" class="hover-button" onclick="history.back()">←</button>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="qqGroupInput" placeholder="请输入 QQ 群号">
+        <button type="button" class="button-find" onclick="openApiLink()" >查询</button>
+        <input type="text" id="urlInput" readonly>
+    </div>
+    <script>
+        async function openApiLink() {
+            urlInput.style.textDecoration = 'none'; // 去掉下划线
+            const qqGroup = document.getElementById('qqGroupInput').value;
+            if (!qqGroup) {
+                alert('请输入 QQ 群号');
+                return;
+            }
+            try {
+                const apiUrl = `https://api.ilingku.com/int/v1/qunurl?qun=${qqGroup}&format=json`;
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Accept-Charset': 'ASCII'
+                    }
+                });
+                
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    try {
+                        const data = await response.json();
+                        const urlInput = document.getElementById('urlInput');
+                        if (data.url) {
+                            urlInput.value = data.url;
+                            urlInput.onclick = function() {
+                                window.location.href = data.url;
+                            };
+                        }
+                    } catch (error) {
+                        urlInput.value = '查询失败';
+                        urlInput.onclick = null;
+                    }
+                } else {
+                    urlInput.value = '查询失败';
+                    urlInput.onclick = null; // 设置为不可点击状态
+                }
+            } catch (error) {
+                urlInput.value = '查询失败';
+                urlInput.onclick = null;
+            }
+        }
+    </script>
+</body>
+</html>

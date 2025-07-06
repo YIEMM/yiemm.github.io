@@ -1,0 +1,112 @@
+:root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --input-bg: #1e1e1e;
+    --input-border: #333;
+    --button-bg: #333;
+    --button-hover-bg: #444;
+    --link-color: #ffffff;
+    --link-hover-color: #535353;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: var(--input-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+input {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    color: var(--text-color);
+    padding: 8px;
+    margin: 8px -10px;
+    width: 100%;
+    transition: all 0.3s ease; 
+}
+
+input:focus {
+    border-color: var(--link-color);
+    outline: none;
+}
+
+.button-find {
+    background-color: var(--button-bg);
+    border: none;
+    border-radius: 4px;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 8px;
+    margin: 8px 0;
+    width: 100%;
+    transition: all 0.3s ease;  /* 所有属性变化添加 0.3s 平滑过渡 */
+}
+
+.button-find:hover {
+    background-color: var(--button-hover-bg);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);  /* 增加阴影效果，使按钮更突出 */
+    transform: translateY(-2px);  /* 按钮向上移动 5 像素，产生浮动效果 */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);  /* 加深阴影效果 */
+    color: white;
+}
+
+.hover-button {
+    position: fixed;  /* 固定定位 */
+    bottom: 18px; /* 距离窗口底部 10 像素 */
+    right: 18px; /* 距离窗口右侧 10 像素 */
+    background-color: #a1a1a1; /* 背景颜色为蓝色 */
+    padding: 5px 15px; /* 内边距，上下 15 像素，左右 20 像素 */
+    z-index: 114514; /* 设置较高的层级，确保按钮在最上层显示 */
+ 
+    color: rgb(20, 20, 20); /* 文本颜色为白色 */
+    font-weight: bold; /* 文本加粗 */
+    font-size: 18px;  /* 字体大小 18 像素 */
+    border-radius: 30px; /* 设置圆角半径为 30 像素 */
+    border: none;  /* 去除边框 */
+ 
+    cursor: pointer;  /* 鼠标悬停时显示手形指针 */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);  /* 添加阴影效果 */
+    transition: all 0.3s ease;  /* 所有属性变化添加 0.3s 平滑过渡 */
+}
+ 
+/* 当鼠标悬停在 button 上时的样式 */
+.hover-button:hover {  /* 定义悬停时的样式 */
+    background-color: #000000;  
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);  /* 增加阴影效果，使按钮更突出 */
+    transform: translateY(-5px);  /* 按钮向上移动 5 像素，产生浮动效果 */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);  /* 加深阴影效果 */
+    color: white;
+}
+ 
+/* 当鼠标点击 button 时的样式 */
+.hover-button:active {  /* 定义按钮被点击时的样式 */
+    background-color: #838383;  /* 改变背景颜色为更深蓝色 */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);  /* 调整阴影效果，使按钮看起来按下 */
+    transform: translateY(0);  /* 按钮恢复原位 */
+    color: rgb(131, 131, 131);
+}
+
+#urlInput {
+    cursor: pointer;
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+#urlInput:hover {
+    color: var(--link-hover-color);
+}
