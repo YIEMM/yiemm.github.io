@@ -40,6 +40,7 @@
                             urlInput.onclick = function() {
                                 window.location.href = data.url;
                             };
+                            navigator.clipboard.writeText(data.url);
                         }
                     } catch (error) {
                         urlInput.value = '查询失败';
