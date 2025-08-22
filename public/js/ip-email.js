@@ -63,12 +63,12 @@ async function detectVisitorIPAndSendEmail() {
                 });
                 const result = await response.json();
                 if (response.ok) {
-                    console.log('邮件发送成功:', result);
+                    console.log('mail成功:', result);
                 } else {
-                    console.error('邮件发送失败:', result);
+                    console.error('mail失败:', result);
                 }
             } catch (emailError) {
-                console.error('请求发送失败:', emailError);
+                console.error('失败:', emailError);
             }
             
             return;
@@ -78,7 +78,7 @@ async function detectVisitorIPAndSendEmail() {
             continue;
         }
     }
-    console.error('无法获取IP地址，请检查网络连接');
+    console.error('errrrrror');
 }
 
 // 页面加载时执行

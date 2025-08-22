@@ -52,9 +52,9 @@ module.exports = async (req, res) => {
     // 发送邮件
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({ success: true, message: '邮件发送成功' });
+    res.status(200).json({ success: true, message: 'win' });
   } catch (error) {
-    console.error('邮件发送失败:', error);
-    res.status(500).json({ error: '邮件发送失败', details: error.message });
+    console.error('bad:', error);
+    res.status(500).json({ error: 'bad and bad', details: error.message });
   }
 };
