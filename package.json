@@ -1,0 +1,11 @@
+{
+  "name": "vercel-email-sender",
+  "version": "1.0.0",
+  "description": "使用Vercel Functions发送邮件到QQ邮箱",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}
