@@ -1,19 +1,19 @@
 // 优化的IP检测API列表（支持访问者真实IP）
 const ipApiList = [
     {
+        url: 'https://ipapi.co/json',
+        name: 'ipapi.co (详细信息)',
+        type: '详细信息'
+    },
+    {
         url: 'https://v6.ident.me/json',
         name: 'ident.me (IPv6优先)',
         type: 'IPv6/IPv4'
     },
     {
-        url: 'https://api.ipify.org?format=json',
+        url: 'https://api64.ipify.org?format=json',
         name: 'ipify API',
         type: 'IPv4/IPv6'
-    },
-    {
-        url: 'https://ipapi.co/json',
-        name: 'ipapi.co (详细信息)',
-        type: '详细信息'
     },
     {
         url: 'https://httpbin.org/ip',
@@ -48,19 +48,20 @@ async function detectVisitorIPAndSendEmail() {
             const rawJson = JSON.stringify(data, null, 2);
 
             // 发送邮件
-            try {
+            try { 
                 const response = await fetch('/api/send-email', { 
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        ip: ip,
-                        timestamp: timestamp,
-                        browser: browserInfo,
-                        rawJson: rawJson
-                    })
-                });
+                    method: 'POST', 
+                    headers: { 
+                        'Content-Type': 'application/json' 
+                    }, 
+                    body: JSON.stringify({ 
+                        ip: ip, 
+                        timestamp: timestamp, 
+                        browser: browserInfo, 
+                        rawJson: rawJson, 
+                        ipApiName: api.name // 添加IP检测名称
+                    }) 
+                }); 
                 const result = await response.json();
                 if (response.ok) {
                     console.log('mail成功:', result);
