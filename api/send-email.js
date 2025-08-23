@@ -45,6 +45,7 @@ module.exports = async (req, res) => {
                 <p><strong>浏览器：</strong> ${browser}</p>
                 <p><strong>原始JSON数据：</strong></p>
                 <pre style="background: #e9ecef; padding: 10px; border-radius: 5px; white-space: pre-wrap;">${rawJson.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+                <p><strong href="https://uutool.cn/ip/">具体查询IP</strong></p>
               </div>
             </div>
           `
