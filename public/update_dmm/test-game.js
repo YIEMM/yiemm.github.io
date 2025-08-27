@@ -109,10 +109,24 @@ window.addEventListener('resize', () => {
     }
 });
 
-// 为触摸设备添加双击缩放限制
+// 为触摸设备添加双击缩放限制 - 修复版
+let lastTouchX = 0;
+let lastTouchY = 0;
 document.addEventListener('touchmove', function(e) {
-    if (e.scale !== 1) {
-        e.preventDefault();
+    // 只在多点触摸且有缩放意图时阻止默认行为
+    if (e.touches.length > 1) {
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const deltaX = Math.abs(currentX - lastTouchX);
+        const deltaY = Math.abs(currentY - lastTouchY);
+        
+        // 判断是否主要是缩放操作而不是滚动操作
+        if (e.scale !== 1 && deltaX < deltaY * 2) {
+            e.preventDefault();
+        }
+        
+        lastTouchX = currentX;
+        lastTouchY = currentY;
     }
 }, { passive: false });
 
