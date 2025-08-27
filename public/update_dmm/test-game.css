@@ -165,9 +165,9 @@ body {
     color: var(--primary-color);
 }
 
-/* 通知容器 */
+/* 通知容器 - 修复版 */
 .notice-container {
-    margin-left: 220px;
+    margin-left: 280px; /* 修改为与侧边栏宽度一致 */
     margin-right: auto;
     padding: var(--spacing-lg);
     max-width: 1200px;
