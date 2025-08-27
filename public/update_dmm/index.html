@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逃跑吧！少年 - 更新日志</title>
+    <!-- 引入Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- 引入外部CSS -->
+    <link rel="stylesheet" href="/update_dmm/test-game.css">
+    <link rel="stylesheet" href="./test-game.css">
+    <style>
+        /* 额外样式 - 更新日志列表 */
+        .update-log-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .update-log-item {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius-large);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-speed) ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .update-log-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .update-log-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width var(--transition-speed) ease;
+        }
+        
+        .update-log-item:hover::before {
+            width: 6px;
+        }
+        
+        .update-log-date {
+            font-size: var(--font-size-xl);
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .update-log-title {
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .update-log-description {
+            font-size: var(--font-size-sm);
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .update-log-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .update-log-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .update-log-link i {
+            margin-left: var(--spacing-xs);
+            transition: transform var(--transition-speed) ease;
+        }
+        
+        .update-log-item:hover .update-log-link i {
+            transform: translateX(3px);
+        }
+        
+        /* 适配移动设备 */
+        @media (max-width: 768px) {
+            .update-log-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边目录 -->
+    <div class="sidebar hidden">
+        <div class="sidebar-title">更新日志</div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="#update-logs"><i class="fas fa-history"></i> 版本更新</a>
+            </li>
+            <li>
+                <a href="#latest-updates"><i class="fas fa-angle-right"></i> 最新更新</a>
+            </li>
+            <li>
+                <a href="#archive-updates"><i class="fas fa-angle-right"></i> 历史更新</a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- 控制按钮容器 -->
+    <div class="control-buttons">
+        <!-- 侧边目录切换按钮 -->
+        <button class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- 暗黑模式切换按钮 -->
+        <button class="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <div class="notice-container">
+        <!-- 页面标题 -->
+        <div class="notice-category" id="update-logs">
+            <div class="category-title">
+                <i class="fas fa-history"></i> 逃跑吧！少年 - 更新日志
+            </div>
+            
+            <!-- 页面描述 -->
+            <div class="notice-card" style="margin-bottom: var(--spacing-lg);">
+                <div class="notice-content">欢迎来到逃跑吧！少年更新日志中心。这里汇总了游戏的最新版本更新内容，包括活动更新、功能优化、数值调整等信息</div>
+                <div class="notice-content">目前由玩家-壹进行更改日志</div>
+            </div>
+            
+            <!-- 最新更新 -->
+            <div id="latest-updates">
+                <h3 class="section-title">最新更新</h3>
+                <div class="update-log-list">
+                    <!-- 2025_08_28 更新日志 -->
+                    <div class="update-log-item">
+                        <div class="update-log-date">2025.08.28</div>
+                        <div class="update-log-title">SS31赛季 - 极速狂飙</div>
+                        <div class="update-log-description">S31赛季宝藏更新，小狐狸 · 灼夭套装主题时装上新，赛季好友赠礼，周卡月卡改版，星粉返场优化</div>
+                        <a href="./2025_08_28/" class="update-log-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 历史更新 -->
+            <div id="archive-updates" style="margin-top: var(--spacing-xxl);">
+                <h3 class="section-title">历史更新</h3>
+                <div class="update-log-list">
+                    <div class="update-log-item">
+                        <div class="update-log-date">SS31赛季 - 极速狂飙</div>
+                        <div class="update-log-title">2025.08.28</div>
+                        <div class="update-log-description">S31赛季宝藏更新，小狐狸 · 灼夭套装主题时装上新，赛季好友赠礼，周卡月卡改版，星粉返场优化</div>
+                        <a href="2025_08_28/" class="update-log-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="update-log-item">
+                        <div class="update-log-date">测试1</div>
+                        <div class="update-log-title">111111</div>
+                        <div class="update-log-description">1111111111</div>
+                        <a href="2025_08_28/" class="update-log-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/update_dmm/test-game.js"></script>
+    <script src="./test-game.js"></script>
+</body>
+</html>

@@ -1,26 +1,162 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width initial-scale=1'>
-    <link type='text/css' rel='stylesheet' href='/css/defect.css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YI - 个人主页</title>
+    <!-- 引入Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- 引入外部CSS -->
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="/css/icon.ico" type="image/x-icon">
-    <title>README</title>
 </head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">
+            <i class="fas fa-code"></i> YI
+        </a>
+        
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#features">功能</a></li>
+            <li><a href="#projects">项目</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+        
+        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-<body class='typora-export os-windows'>
-    <div class='typora-export-content'>
-    <div id='write'>
-        <h1 id='yiemmgithubio'><span>目录-YI</span></h1>
-        <p>&nbsp;</p>
-        <h3><span>看什么看，什么都没有</span></h3>
-        <p>&nbsp;</p>
-    </div>
-    <div style='text-align: center;'>
-        <p>
-            <span style="color:#9198a14f">yi</span>
-            <!-- 地址 --><a href='https://github.com/yiemm/yiemm.github.io' style='text-decoration: none;color:#9198a14f'><span>项目地址</span></a><span style="color:#9198a14f">·</span><a href="https://vercel.com/" style='text-decoration: none;'><span style="color:#9198a14f">代理地址</span></a><span style="color:#9198a14f">·</span><a href="https://west.cn/" style='text-decoration: none;'><span style="color:#9198a14f">域名</span></a>
-        </p>
-    </div>
+    <!-- 主页区域 -->
+    <section class="hero" id="home">
+        <h1 class="hero-title">欢迎来到 YI 的个人主页</h1>
+        <p class="hero-subtitle">这里是我的个人空间，展示我的项目、兴趣和技能。感谢您的访问！</p>
+        <div class="hero-buttons">
+            <a href="./update_dmm/" class="btn btn-primary">
+                <i class="fas fa-folder-open"></i> 逃跑更新日志
+            </a>
+            <a href="https://github.com/yiemm/yiemm.github.io" class="btn btn-secondary" target="_blank">
+                <i class="fab fa-github"></i> GitHub 仓库
+            </a>
+        </div>
+    </section>
+
+    <!-- 功能卡片区域 -->
+    <section class="features" id="features">
+        <h2 class="section-title">主要功能</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h3 class="feature-title">更新日志</h3>
+                <p class="feature-description">查看最新和历史版本的更新内容，了解功能变化和优化。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="feature-title">开源项目</h3>
+                <p class="feature-description">访问GitHub仓库，查看源码并参与项目开发。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目链接区域 -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">项目链接</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <div class="project-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-title">游戏更新日志</div>
+                </div>
+                <a href="/update_dmm/" class="project-link">
+                    访问 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="project-item">
+                <div class="project-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-title">测试页面</div>
+                </div>
+                <a href="/test/" class="project-link">
+                    访问 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="footer-links">
+            <a href="https://github.com/yiemm/yiemm.github.io" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://vercel.com/" target="_blank"><i class="fas fa-server"></i> Vercel</a>
+            <a href="https://west.cn/" target="_blank"><i class="fas fa-globe"></i> 域名服务</a>
+        </div>
+        <div class="footer-copyright">
+            © 2025 YI. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // 暗黑模式切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+        
+        // 检查本地存储中的主题偏好
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // 切换主题
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // 保存主题偏好到本地存储
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // 更新按钮图标
+            if (isDarkMode) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // 移动端导航菜单切换
+        const navbarToggle = document.getElementById('navbarToggle');
+        const navbarMenu = document.getElementById('navbarMenu');
+        
+        navbarToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+
+        // 点击导航链接后关闭移动菜单
+        document.querySelectorAll('.navbar-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navbarMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
