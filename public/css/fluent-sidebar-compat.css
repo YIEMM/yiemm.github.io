@@ -1,0 +1,176 @@
+/* 暗黑模式样式变量 */
+:root {
+    --sidebar-bg: #2d2d2d;
+    --sidebar-text: #e0e0e0;
+    --sidebar-hover: #404040;
+    --sidebar-active: #007acc;
+    --sidebar-border: #404040;
+}
+
+/* 暗黑模式下的变量覆盖 */
+.dark-mode :root {
+    --color-scale-gray-9: #1a1a1a;
+    --color-scale-gray-8: #2d2d2d;
+    --color-scale-gray-7: #404040;
+    --color-scale-gray-6: #6b6b6b;
+    --color-scale-gray-5: #8e8e8e;
+    --color-scale-gray-4: #b0b0b0;
+    --color-scale-gray-3: #cccccc;
+    --color-scale-gray-2: #e6e6e6;
+    --color-scale-gray-1: #f5f5f5;
+    --color-scale-gray-0: #ffffff;
+}
+
+/* 侧边栏样式增强 */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding-top: 60px;
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+/* 侧边栏标题样式 */
+.sidebar-title {
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--sidebar-text);
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+/* 侧边栏菜单样式 */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.sidebar-menu li a:hover {
+    background-color: var(--sidebar-hover);
+}
+
+.sidebar-menu li a.active {
+    background-color: var(--sidebar-active);
+    color: white;
+}
+
+/* 切换按钮样式增强 */
+.sidebar-toggle, .theme-toggle {
+    position: fixed;
+    top: 20px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    border: 1px solid var(--sidebar-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-toggle {
+    left: 20px;
+}
+
+.theme-toggle {
+    right: 20px;
+}
+
+/* 内容区域样式适配 */
+.typora-export-content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.hidden ~ .typora-export-content {
+    margin-left: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80%;
+        max-width: 300px;
+    }
+    
+    .typora-export-content {
+        margin-left: 0;
+    }
+    
+    .sidebar-toggle {
+        left: 20px;
+    }
+}
+
+/* 暗黑模式下的内容样式调整 */
+.dark-mode body {
+    background-color: var(--color-scale-gray-9);
+    color: var(--color-scale-gray-1);
+}
+
+.dark-mode .container {
+    background-color: var(--color-scale-gray-8);
+    border-color: var(--color-scale-gray-7);
+}
+
+.dark-mode a {
+    color: var(--color-scale-blue-4);
+}
+
+.dark-mode a:hover {
+    color: var(--color-scale-blue-3);
+}
+
+/* 与 Markdown 样式的兼容性增强 */
+.dark-mode .typora-export-content {
+    color-scheme: dark;
+}
+
+/* 表格样式优化 */
+.dark-mode table {
+    border-color: var(--color-scale-gray-7);
+}
+
+.dark-mode table th,
+.dark-mode table td {
+    border-color: var(--color-scale-gray-6);
+}
+
+.dark-mode table tr:nth-child(2n) {
+    background-color: var(--color-scale-gray-8);
+}
+
+/* 图片容器样式 */
+.dark-mode .table-figure {
+    background-color: var(--color-scale-gray-8);
+    border: 1px solid var(--color-scale-gray-7);
+}

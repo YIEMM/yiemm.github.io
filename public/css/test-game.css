@@ -451,6 +451,11 @@ body {
         font-size: var(--font-size-md);
         line-height: 1.7;
     }
+    .color-red {
+                font-size: var(--font-size-md);
+                margin-top: var(--spacing-md);
+                display: block;
+    }
 }
 
 @media (max-width: 480px) {

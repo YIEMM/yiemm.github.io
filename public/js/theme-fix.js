@@ -1,4 +1,3 @@
-
 // 暗黑模式切换功能
 const themeToggle = document.querySelector('.theme-toggle');
 const themeIcon = themeToggle.querySelector('i');
@@ -29,34 +28,6 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// 侧边目录切换功能
-const sidebar = document.querySelector('.sidebar');
-const sidebarToggle = document.querySelector('.sidebar-toggle');
-const sidebarIcon = sidebarToggle.querySelector('i');
-
-// 初始化侧边栏图标
-if (sidebar.classList.contains('hidden')) {
-    sidebarIcon.classList.remove('fa-times');
-    sidebarIcon.classList.add('fa-bars');
-} else {
-    sidebarIcon.classList.remove('fa-bars');
-    sidebarIcon.classList.add('fa-times');
-}
-
-// 切换侧边栏显示/隐藏
-sidebarToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('hidden');
-    
-    // 更新按钮图标
-    if (sidebar.classList.contains('hidden')) {
-        sidebarIcon.classList.remove('fa-times');
-        sidebarIcon.classList.add('fa-bars');
-    } else {
-        sidebarIcon.classList.remove('fa-bars');
-        sidebarIcon.classList.add('fa-times');
-    }
-});
-
 // 平滑滚动功能
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -67,10 +38,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         if (targetElement) {
             // 在移动设备上隐藏侧边栏
-            if (window.innerWidth <= 768 && !sidebar.classList.contains('hidden')) {
-                sidebar.classList.add('hidden');
-                sidebarIcon.classList.remove('fa-times');
-                sidebarIcon.classList.add('fa-bars');
+            if (window.innerWidth <= 768 && window.sidebar && !window.sidebar.classList.contains('hidden')) {
+                window.sidebar.classList.add('hidden');
+                if (window.sidebarIcon) {
+                    window.sidebarIcon.classList.remove('fa-times');
+                    window.sidebarIcon.classList.add('fa-bars');
+                }
             }
             
             // 平滑滚动到目标元素
@@ -85,26 +58,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // 移动端适配 - 点击外部区域关闭侧边栏
 document.addEventListener('click', (e) => {
     // 检查是否在移动设备上
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 768 && window.sidebar && window.sidebarToggle) {
         // 如果点击的不是侧边栏、切换按钮或其子元素，且侧边栏是打开的
-        if (!sidebar.contains(e.target) && 
-            !sidebarToggle.contains(e.target) && 
-            !sidebar.classList.contains('hidden')) {
-            sidebar.classList.add('hidden');
-            sidebarIcon.classList.remove('fa-times');
-            sidebarIcon.classList.add('fa-bars');
+        if (!window.sidebar.contains(e.target) && 
+            !window.sidebarToggle.contains(e.target) && 
+            !window.sidebar.classList.contains('hidden')) {
+            window.sidebar.classList.add('hidden');
+            if (window.sidebarIcon) {
+                window.sidebarIcon.classList.remove('fa-times');
+                window.sidebarIcon.classList.add('fa-bars');
+            }
         }
     }
 });
 
 // 窗口大小改变时调整侧边栏状态
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 768 && window.sidebar) {
         // 在大屏幕上，如果侧边栏本来不是默认隐藏的，显示它
-        if (!sidebar.classList.contains('hidden')) {
-            sidebar.classList.remove('hidden');
-            sidebarIcon.classList.remove('fa-bars');
-            sidebarIcon.classList.add('fa-times');
+        if (!window.sidebar.classList.contains('hidden')) {
+            window.sidebar.classList.remove('hidden');
+            if (window.sidebarIcon) {
+                window.sidebarIcon.classList.remove('fa-bars');
+                window.sidebarIcon.classList.add('fa-times');
+            }
         }
     }
 });

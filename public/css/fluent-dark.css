@@ -25,8 +25,8 @@ img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
 button, input, select, textarea { color: inherit; font: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
 p { line-height: inherit; }
 h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
@@ -156,6 +156,7 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .md-fences.md-fences-math { font-size: 1em; }
 .md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
 .md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
 .typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
 .typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
 .typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
@@ -1258,42 +1259,6 @@ blockquote>h6:first-child::before {
     height: 20px;
     display: inline-block;
     margin-right: 4px;
-}
-
-.hover-button {
-    position: fixed;  /* 固定定位 */
-    bottom: 18px; /* 距离窗口底部 10 像素 */
-    right: 18px; /* 距离窗口右侧 10 像素 */
-    background-color: #a1a1a1; /* 背景颜色为蓝色 */
-    padding: 5px 15px; /* 内边距，上下 15 像素，左右 20 像素 */
-    z-index: 114514; /* 设置较高的层级，确保按钮在最上层显示 */
- 
-    color: rgb(20, 20, 20); /* 文本颜色为白色 */
-    font-weight: bold; /* 文本加粗 */
-    font-size: 18px;  /* 字体大小 18 像素 */
-    border-radius: 30px; /* 设置圆角半径为 30 像素 */
-    border: none;  /* 去除边框 */
- 
-    cursor: pointer;  /* 鼠标悬停时显示手形指针 */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);  /* 添加阴影效果 */
-    transition: all 0.3s ease;  /* 所有属性变化添加 0.3s 平滑过渡 */
-}
- 
-/* 当鼠标悬停在 button 上时的样式 */
-.hover-button:hover {  /* 定义悬停时的样式 */
-    background-color: #000000;  /* 改变背景颜色为深蓝色 */
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);  /* 增加阴影效果，使按钮更突出 */
-    transform: translateY(-5px);  /* 按钮向上移动 5 像素，产生浮动效果 */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);  /* 加深阴影效果 */
-    color: white;
-}
- 
-/* 当鼠标点击 button 时的样式 */
-.hover-button:active {  /* 定义按钮被点击时的样式 */
-    background-color: #838383;  /* 改变背景颜色为更深蓝色 */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);  /* 调整阴影效果，使按钮看起来按下 */
-    transform: translateY(0);  /* 按钮恢复原位 */
-    color: rgb(131, 131, 131);
 }
 
 
