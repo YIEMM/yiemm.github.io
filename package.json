@@ -1,9 +1,14 @@
 {
-  "name": "vercel-email-sender",
+  "name": "yiemm-personal-site",
   "version": "1.0.0",
-  "description": "使用Vercel Functions发送邮件到QQ邮箱",
+  "description": "YI的个人主页",
   "dependencies": {
     "nodemailer": "^6.9.7"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npx http-server ./public -p 8080",
+    "start": "npm run dev"
   },
   "engines": {
     "node": "22.x"

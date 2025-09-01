@@ -175,14 +175,48 @@ function addSidebarStyles() {
             border-right: 1px solid var(--border-color);
             padding: var(--spacing-md);
             z-index: 999;
-            transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
-            transform: translateX(0);
+            /* 改进的过渡动画 */
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        width 0.4s ease, 
+                        opacity 0.3s ease;
+            transform: translateX(-100%);
+            opacity: 0;
             overflow-y: auto;
             box-shadow: var(--shadow-lg);
         }
         
-        .sidebar.hidden {
-            transform: translateX(-100%);
+        .sidebar:not(.hidden) {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* 侧边栏内容的动画效果 */
+        .sidebar-menu li {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .sidebar:not(.hidden) .sidebar-menu li:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+        
+        .sidebar:not(.hidden) .sidebar-menu li:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+        
+        .sidebar:not(.hidden) .sidebar-menu li:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+        
+        .sidebar:not(.hidden) .sidebar-menu li:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+        
+        .sidebar:not(.hidden) .sidebar-menu li {
+            opacity: 1;
+            transform: translateX(0);
         }
         
         .sidebar-title {
@@ -193,15 +227,15 @@ function addSidebarStyles() {
             border-bottom: 2px solid var(--primary-color);
             color: var(--primary-color);
             text-align: center;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
         
-        .sidebar-menu {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .sidebar-menu li {
-            margin-bottom: var(--spacing-xs);
+        .sidebar:not(.hidden) .sidebar-title {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.15s;
         }
         
         .sidebar-menu a {
