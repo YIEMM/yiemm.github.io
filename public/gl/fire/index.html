@@ -1,592 +1,304 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<script src="../../js/get-ip.js"></script>
-<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link href='https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap' rel='stylesheet' type='text/css'>
-<link rel="icon" href="../../css/icon.ico" type="image/x-icon">
-<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
-.mac-os-11 { --title-bar-height: 28px; }
-html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-h1, h2, h3, h4, h5 { white-space: pre-wrap; }
-body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
-iframe { margin: auto; }
-a.url { word-break: break-all; }
-a:active, a:hover { outline: 0px; }
-.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
-#write.first-line-indent p { text-indent: 2em; }
-#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
-#write.first-line-indent li { margin-left: 2em; }
-.for-image #write { padding-left: 8px; padding-right: 8px; }
-body.typora-export { padding-left: 30px; padding-right: 30px; }
-.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
-.typora-export .task-list-item input { pointer-events: none; }
-@media screen and (max-width: 500px) {
-  body.typora-export { padding-left: 0px; padding-right: 0px; }
-  #write { padding-left: 20px; padding-right: 20px; }
-}
-#write li > figure:last-child { margin-bottom: 0.5rem; }
-#write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
-button, input, select, textarea { color: inherit; font: inherit; }
-input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
-*, ::after, ::before { box-sizing: border-box; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
-#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
-p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
-p { orphans: 4; }
-h1 { font-size: 2rem; }
-h2 { font-size: 1.8rem; }
-h3 { font-size: 1.6rem; }
-h4 { font-size: 1.4rem; }
-h5 { font-size: 1.2rem; }
-h6 { font-size: 1rem; }
-.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
-.hidden { display: none; }
-.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
-a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
-sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
-#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
-figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px; }
-thead, tr { break-inside: avoid; break-after: auto; }
-thead { display: table-header-group; }
-table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
-table.md-table td { min-width: 32px; }
-.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
-.CodeMirror-linenumber { user-select: none; }
-.CodeMirror { text-align: left; }
-.CodeMirror-placeholder { opacity: 0.3; }
-.CodeMirror pre { padding: 0px 4px; }
-.CodeMirror-lines { padding: 0px; }
-div.hr:focus { cursor: none; }
-#write pre { white-space: pre-wrap; }
-#write.fences-no-line-wrapping pre { white-space: pre; }
-#write pre.ty-contain-cm { white-space: normal; }
-.CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
-.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
-#write .md-fences.mock-cm { white-space: pre-wrap; }
-.md-fences.md-fences-with-lineno { padding-left: 0px; }
-#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
-.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
-.CodeMirror-line, twitterwidget { break-inside: avoid; }
-svg { break-inside: avoid; }
-.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
-.footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
-li div { padding-top: 0px; }
-blockquote { margin: 1rem 0px; }
-li .mathjax-block, li p { margin: 0.5rem 0px; }
-li blockquote { margin: 1rem 0px; }
-li { margin: 0px; position: relative; }
-blockquote > :last-child { margin-bottom: 0px; }
-blockquote > :first-child, li > :first-child { margin-top: 0px; }
-.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
-#write .footnote-line { white-space: pre-wrap; }
-@media print {
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
-  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
-  .typora-export * { -webkit-print-color-adjust: exact; }
-  .typora-export #write { break-after: avoid; }
-  .typora-export #write::after { height: 0px; }
-  .is-mac table { break-inside: avoid; }
-  #write > p:nth-child(1) { margin-top: 0px; }
-  .typora-export-show-outline .typora-export-sidebar { display: none; }
-  figure { overflow-x: visible; }
-}
-.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
-a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
-p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
-#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
-p > .md-image:only-child { display: inline-block; width: 100%; }
-#write .MathJax_Display { margin: 0.8em 0px 0px; }
-.md-math-block { width: 100%; }
-.md-math-block:not(:empty)::after { display: none; }
-.MathJax_ref { fill: currentcolor; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
-.md-task-list-item { position: relative; list-style-type: none; }
-.task-list-item.md-task-list-item { padding-left: 0px; }
-.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
-.math { font-size: 1rem; }
-.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
-.md-toc-content { position: relative; margin-left: 0px; }
-.md-toc-content::after, .md-toc::after { display: none; }
-.md-toc-item { display: block; color: rgb(65, 131, 196); }
-.md-toc-item a { text-decoration: none; }
-.md-toc-inner:hover { text-decoration: underline; }
-.md-toc-inner { display: inline-block; cursor: pointer; }
-.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
-.md-toc-h2 .md-toc-inner { margin-left: 2em; }
-.md-toc-h3 .md-toc-inner { margin-left: 4em; }
-.md-toc-h4 .md-toc-inner { margin-left: 6em; }
-.md-toc-h5 .md-toc-inner { margin-left: 8em; }
-.md-toc-h6 .md-toc-inner { margin-left: 10em; }
-@media screen and (max-width: 48em) {
-  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
-  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
-  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
-  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
-}
-a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
-.footnote-line a:not(.reversefootnote) { color: inherit; }
-.reversefootnote { font-family: ui-monospace, sans-serif; }
-.md-attr { display: none; }
-.md-fn-count::after { content: "."; }
-code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
-.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
-code { text-align: left; vertical-align: initial; }
-a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
-.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
-.md-diagram-panel > svg { max-width: 100%; }
-[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
-[lang="mermaid"] .node text { font-size: 1rem; }
-table tr th { border-bottom: 0px; }
-video { max-width: 100%; display: block; margin: 0px auto; }
-iframe { max-width: 100%; width: 100%; border: none; }
-.highlight td, .highlight tr { border: 0px; }
-mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
-.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-.md-expand mark .md-meta { opacity: 0.3 !important; }
-mark .md-meta { color: rgb(0, 0, 0); }
-@media print {
-  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
-}
-.md-diagram-panel .messageText { stroke: none !important; }
-.md-diagram-panel .start-state { fill: var(--node-fill); }
-.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
-.md-fences.md-fences-math { font-size: 1em; }
-.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
-.md-fences-advanced:not(.md-focus) { background: inherit; }
-.mermaid-svg { margin: auto; }
-.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
-.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
-.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
-.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
-@media screen and (max-width: 1024px) {
-  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
-}
-@media screen and (max-width: 800px) {
-  .typora-export-sidebar { display: none; }
-}
-.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
-.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
-.outline-content strong { font-weight: 400; }
-.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
-.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
-.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
-.outline-expander:hover::before { content: ""; }
-.outline-h1 > .outline-item { padding-left: 0px; }
-.outline-h2 > .outline-item { padding-left: 1em; }
-.outline-h3 > .outline-item { padding-left: 2em; }
-.outline-h4 > .outline-item { padding-left: 3em; }
-.outline-h5 > .outline-item { padding-left: 4em; }
-.outline-h6 > .outline-item { padding-left: 5em; }
-.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
-.outline-label:hover { text-decoration: underline; }
-.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
-.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
-.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
-.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
-.outline-children { display: none; }
-.info-panel-tab-wrapper { display: none; }
-.outline-item-open > .outline-children { display: block; }
-.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
-.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
-.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
-.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
-.typora-export-collapse-outline .outline-children { display: none; }
-.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
-.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
-.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
-.md-inline-math-container mjx-container { zoom: 0.95; }
-mjx-container { break-inside: avoid; }
-.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
-.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
-.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
-.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
-.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
-.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
-.md-alert-text-note { color: rgb(9, 105, 218); }
-.md-alert-text-important { color: rgb(130, 80, 223); }
-.md-alert-text-warning { color: rgb(154, 103, 0); }
-.md-alert-text-tip { color: rgb(31, 136, 61); }
-.md-alert-text-caution { color: rgb(207, 34, 46); }
-.md-alert-text { font-size: 0.9rem; font-weight: 700; }
-.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
-.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
-
-
-/* 结合vue3整体风格和fluent-dark表格样式的自定义主题 */
-
-/* 引入字体 */
-@include-when-export url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-/* Vue3主题的基础变量 */
-:root {
-    --text-color: rgba(255, 255, 255, 0.75);
-    --bg-color: rgb(26, 26, 26);
-    --control-text-color: var(--text-color);
-    --meta-content-color: var(--text-color);
-    --active-file-border-color: var(--drake-accent);
-    --rawblock-edit-panel-bd: var(--code-block-bg-color);
-    --item-hover-bg-color: #323232;
-    --active-file-bg-color: var(--item-hover-bg-color);
-    --mermaid-theme: night;
-
-    --blur-text-color: rgba(179, 190, 196, 0.5);
-    --md-char-color: #535455;
-    --side-bar-bg-color: var(--bg-color);
-    --search-select-bg-color: #ffffff;
-    --search-select-text-color: var(--bg-color);
-    --select-text-bg-color: #3473B068;
-    --window-border: 1px solid #282828;
-
-    --drake-accent: #42B883;
-    --drake-highlight: #AAC8E4;
-    --a-color: #42B883;
-    --variable-color: var(--drake-highlight);
-    --outline-active-color: var(--title-color);
-    --code-block-bg-color: #242424;
-    --code-block-color: #A6ACCD;
-    --title-color: rgba(255, 255, 255, 0.85);
-    --blockquote-border-color: transparent;
-    --blockquote-color: #EBEBEB99;
-    --blockquote-bg-color: #242424;
-    --strong-color: var(--title-color);
-    --h2-underline-color: var(--title-color);
-    --horizontal-divider-color: var(--title-color);
-    --height-light-color: var(--drake-accent);
-    --height-light-border-color: var(--drake-accent);
-    --yaml-color: #676773;
-    --yaml-bg-color: var(--code-block-bg-color);
-    --footnotes-bg-color: var(--item-hover-bg-color);
-    --footnotes-highlight: #FFD760;
-    
-    /* 从fluent-dark借用的表格相关变量 */
-    --table-border: 1px solid #2d2d2d !important;
-    --elevated-background: #2d2d2d;
-    
-    /* 保持原vue3的输入框和按钮样式 */
-    --input-bg-color: var(--item-hover-bg-color);
-    --btn-hover-bg-color: var(--item-hover-bg-color);
-    --checkbox-checked: url("data:image/svg+xml,%3Csvg class='icon' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M425.984 726.016l384-384-59.99-61.995-324.01 324.011-152.021-152.021L213.973 512zm384-598.016q36.01 0 61.013 25.984T896 213.974v596.01q0 34.005-25.003 59.99t-61.013 25.983h-596.01q-36.011 0-61.014-25.984t-25.003-59.989v-596.01q0-34.006 25.003-59.99T213.973 128h596.011z' fill='%2342B883'/%3E%3C/svg%3E");
-    --checkbox-unchecked: url("data:image/svg+xml,%3Csvg class='icon' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M810.667 213.333v597.334H213.333V213.333h597.334m0-85.333H213.333C166.4 128 128 166.4 128 213.333v597.334C128 857.6 166.4 896 213.333 896h597.334C857.6 896 896 857.6 896 810.667V213.333C896 166.4 857.6 128 810.667 128z' fill='%23acb7c4'/%3E%3C/svg%3E");
-}
-
-/* Vue3主题的基础样式 */
-html {
-    font-size: var(--text-size);
-}
-
-body {
-    font-family: var(--text-font) !important;
-    color: var(--text-color);
-    -webkit-font-feature-settings: "liga" on, "calt" on;
-    -webkit-font-smoothing: subpixel-antialiased;
-    text-rendering: optimizeLegibility;
-    letter-spacing: 0;
-    margin: 0;
-    overflow-x: hidden;
-}
-
-/* 设置内容区域的最大宽度和居中显示 */
-#write {
-    max-width: 90%; /* 全局最大宽度，使用屏幕比例 */
-    margin: 0 auto; /* 水平居中显示 */
-    padding: 2rem 0; /* 上下边距 */
-}
-
-/* 在大屏幕上限制最大宽度 */
-@media (min-width: 1200px) {
-    #write {
-        max-width: 1080px; /* 大屏幕下的最大宽度 */
-    }
-}
-
-/* 在小屏幕上调整边距 */
-@media (max-width: 768px) {
-    #write {
-        padding: 1rem 0;
-    }
-}
-
-p {
-    line-height: var(--text-line-height);
-}
-
-/* 代码块样式 */
-.md-fences {
-    font-size: 1rem;
-    padding: 0.5rem !important;
-    border-radius: 8px;
-    word-wrap: normal;
-    background-color: var(--code-block-bg-color);
-    color: var(--code-block-color);
-    border: none;
-    line-height: var(--code-line-height);
-}
-
-/* 内联LaTeX样式 */
-.MathJax {
-    font-size: 120% !important;
-}
-.MathJax text, .MathJax use {
-    font-family: var(--latex-font);
-}
-/* 块级LaTeX样式 */
-.md-math-block .MathJax {
-    font-size: 130% !important;
-}
-
-/* Mermaid图表样式 */
-[id^=mermaidChart] .cluster rect {
-    fill: var(--table-n2-bg-color) !important;
-    stroke: var(--table-border-color) !important;
-}
-[id^=mermaidChart] .grid .tick text,
-[id^=mermaidChart] .titleText {
-    fill: var(--text-color) !important;
-}
-[id^=mermaidChart] .clusters span.nodeLabel {
-    color: var(--text-color) !important;
-    line-height: 1.8rem;
-}
-[mermaid-type="journey"] line {
-    stroke: #7a7a7a !important;
-}
-[mermaid-type="journey"] .label {
-    color: #333 !important;
-}
-[id^=mermaidChart] .relationshipLabelBox {
-    fill: var(--bg-color) !important;
-    opacity: 1 !important;
-    background-color: var(--bg-color) !important;
-}
-[id^=mermaidChart] .legend {
-    fill: var(--text-color) !important;
-}
-[id^=mermaidChart] g.label {
-    font-size: 1rem !important;
-}
-[id^=mermaidChart] line.divider {
-    stroke: var(--table-border-color) !important;
-}
-[id^=mermaidChart] span.nodeLabel {
-    color: var(--code-block-color) !important;
-    line-height: 1.8rem;
-}
-tspan {
-    color: var(--text-color)
-}
-[id^=mermaidChart] .entityLabel {
-    fill: var(--code-block-color) !important;
-}
-[id^=mermaidChart] {
-    fill: var(--text-color) !important;
-}
-[id^=mermaidChart] rect.rect {
-    fill: rgba(175, 255, 212, 0.3) !important;
-}
-.md-diagram-panel-preview text.actor > tspan { /*方块文字*/
-    fill: var(--code-block-color) !important;
-    stroke: none !important;
-    font-family: var(--text-font) !important;
-    font-size: 1rem !important;
-}
-.md-diagram-panel-preview .actor, .md-diagram-panel-preview .entityBox { /*方块*/
-    stroke: var(--table-border-color) !important;
-    fill: var(--code-block-bg-color) !important;
-}
-.md-diagram-panel-preview .actor-line { /*竖线*/
-    stroke: var(--text-color) !important;
-    stroke-width: 1px;
-}
-.md-diagram-panel-preview .messageLine0 { /*横线*/
-    stroke-width: 1.5;
-    stroke-dasharray: none;
-    stroke: var(--text-color) !important;
-}
-.md-diagram-panel-preview .messageLine1 { /*虚线*/
-    stroke-width: 1.5 !important;
-    stroke-dasharray: 2, 2 !important;
-    stroke: var(--text-color) !important;
-}
-.md-diagram-panel-preview .messageText { /*描述文字*/
-    fill: var(--text-color) !important;
-    font-family: var(--text-font) !important;
-    font-size: 1rem !important;
-}
-.md-diagram-panel-preview .activation0 { /*长方形*/
-    fill: #e6e6e6 !important;
-    stroke: var(--text-color) !important;
-}
-.md-diagram-panel-preview .labelText, .md-diagram-panel-preview .labelText > tspan { /*循环标记*/
-    fill: var(--code-block-color) !important;
-    font-family: var(--text-font) !important;
-    font-size: 1rem !important;
-    dominant-baseline: unset;
-    alignment-baseline: unset;
-}
-.md-diagram-panel-preview .labelBox { /*循环标记背景*/
-    stroke: var(--table-border-color) !important;
-    fill: var(--code-block-bg-color) !important;
-}
-.md-diagram-panel-preview .loopLine { /*循环标记虚线*/
-    stroke: var(--text-color) !important;
-}
-.md-diagram-panel-preview .loopText, .md-diagram-panel-preview .loopText > tspan { /*循环名称*/
-    fill: var(--text-color) !important;
-    font-size: 1rem !important;
-}
-.md-diagram-panel-preview .sequenceNumber { /*序号*/
-    fill: var(--bg-color) !important;
-}
-
-/* 从fluent-dark借用的表格样式 */
-table.md-table {
-    border: none!important;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-table {
-    border-collapse: separate;
-}
-
-tbody>tr>td:not(:first-child) {
-    box-sizing: border-box;
-    border: none;
-    border-right: var(--table-border);
-    border-bottom: var(--table-border);
-}
-
-tbody>tr>td:first-child {
-    box-sizing: border-box;
-    border: none;
-    border-bottom: var(--table-border);
-    border-left: var(--table-border);
-    border-right: var(--table-border);
-}
-
-tr>th:not(:first-child) {
-    box-sizing: border-box;
-    border: none;
-    border-top: var(--table-border);
-    border-right: var(--table-border);
-    border-bottom: var(--table-border);
-}
-
-tr>th:first-child {
-    box-sizing: border-box;
-    border: var(--table-border);
-}
-
-tr:first-child>th:first-child {
-    border-top-left-radius: 4px;
-}
-
-tr:first-child>th:last-child {
-    border-top-right-radius: 4px;
-}
-
-tbody>tr:last-child>td:last-child {
-    border-bottom-right-radius: 4px;
-}
-
-tbody>tr:last-child>td:first-child {
-    border-bottom-left-radius: 4px;
-}
-
-table tr:nth-child(2n), table thead>tr {
-    background-color: var(--elevated-background);
-}
-
-table tbody tr:nth-child(2n+1) {
-    background-color: var(--bg-color);
-}
-
-/* 修复表头最后一行的圆角 */
-thead:last-child>tr:last-child>th:first-child {
-    border-bottom-left-radius: 4px;
-}
-
-thead:last-child>tr:last-child>th:last-child {
-    border-bottom-right-radius: 4px;
-}
-
-table {
-    font-feature-settings: "tnum";
-}
-
-/* 为了更好的兼容性，添加一些额外的表格样式调整 */
-table th {
-    font-weight: bold;
-    color: var(--title-color);
-    padding: 8px 12px;
-    min-width: 130px; /* 表格头部最小宽度 */
-}
-
-table td {
-    padding: 8px 12px;
-    color: var(--text-color);
-    min-width: 130px; /* 表格内容最小宽度 */
-    word-break: break-word; /* 长文本自动换行 */
-}
-
-/* 保持原始vue3主题的其他关键样式 */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--title-color);
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-}
-
-h2 {
-    border-bottom: 1px solid var(--h2-underline-color);
-    padding-bottom: 0.3em;
-}
-
-a {
-    color: var(--a-color);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-blockquote {
-    background-color: var(--blockquote-bg-color);
-    border-left: 4px solid var(--drake-accent);
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 4px;
-}
-
-/* 代码内联样式 */
-code {
-    background-color: var(--code-block-bg-color);
-    color: var(--code-block-color);
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-family: var(--monospace);
-}
-
-
-</style>
-<title>攻略-喷火枪</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+    <title>《逃跑吧！少年》喷火枪</title>
+    <script src="/js/get-ip.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../../css/fluent-dark.css">
 </head>
-<body class='typora-export os-windows'><div class='typora-export-content'>
-<div id='write'  class=''><h1 id='喷火枪'><strong><span>喷火枪</span></strong></h1><h2 id='基本信息'><strong><span>基本信息</span></strong></h2><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>伤害间隔:0.19~0.13s</span></th><th style='text-align:center;' ><span>伤害:12[逃]13[追]</span></th><th style='text-align:center;' ><span>换弹时间:2.8/2.5/2s</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>升级金币:200/250/300</span></td><td style='text-align:center;' ><span>弹匣价格:100</span></td><td style='text-align:center;' ><span>约5.5格的扇形范围，最远端宽为2格，能够适应墙体拐弯的情况</span></td></tr></tbody></table></figure><p><strong><span>武器定位:场景交互|群体伤害|持续伤害</span></strong></p><h5 id='现有皮肤'><strong><span>现有皮肤</span></strong></h5><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><strong><span>初始皮肤</span></strong></th><th style='text-align:center;' ><img src=".\grade1.png" alt="grade1" style="zoom:25%;" /></th><th style='text-align:center;' ><strong><span>4级皮肤</span></strong></th><th style='text-align:center;' ><img src=".\grade4.png" alt="grade4" style="zoom:25%;" /></th></tr></thead><tbody><tr><td style='text-align:center;' ><strong><span>7级皮肤</span></strong></td><td style='text-align:center;' ><img src=".\grade7.png" alt="grade7" style="zoom:25%;" /></td><td style='text-align:center;' ><strong><span>7级皮肤[风格]</span></strong></td><td style='text-align:center;' ><img src=".\grade7_O.png" alt="grade7_O" style="zoom:25%;" /></td></tr></tbody></table></figure><h2 id='特殊机制-灼烧buff'><strong><span>特殊机制-灼烧buff</span></strong></h2><p><span>喷火枪是</span><strong><span>第一个</span></strong><span>可以</span><strong><span>改变场景</span></strong><span>的道具卡，其核心特殊机制便是灼烧 buff</span></p><h3 id='基础'><strong><span>基础</span></strong></h3><ol start='' ><li><p><span>等级与伤害</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>buff 等级</span></th><th style='text-align:center;' ><span>每秒伤害-逃生</span></th><th style='text-align:center;' ><span>每秒伤害-追捕</span></th><th style='text-align:center;' ><span>核心特性</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>1 阶段</span><img src=".\fire-1.png" alt="fire-1" style="zoom:5%;" /></td><td style='text-align:center;' ><span>1 点</span></td><td style='text-align:center;' ><span>1 点</span></td><td style='text-align:center;' ><span>低额持续伤害，主要用于叠加层数与持续暴露视野</span></td></tr><tr><td style='text-align:center;' ><span>2 阶段</span><img src=".\fire-2.png" alt="fire-1" style="zoom:5%;" /></td><td style='text-align:center;' ><span>1 点</span></td><td style='text-align:center;' ><span>1 点</span></td><td style='text-align:center;' ><span>低额持续伤害，为触发 3 阶段高额伤害做铺垫</span></td></tr><tr><td style='text-align:center;' ><span>3 阶段</span><img src=".\fire-3.png" alt="fire-1" style="zoom:5%;" /></td><td style='text-align:center;' ><span>12 点</span></td><td style='text-align:center;' ><span>13 点</span></td><td style='text-align:center;' ><span>高额爆发伤害，是喷火枪造成核心输出的关键阶段</span></td></tr></tbody></table></figure></li></ol><ul><li><p><span>核心差异：1/2 阶段为低额持续伤害，3 阶段为高额爆发伤害</span></p></li></ul><ol start='2' ><li><p><span>持续与升级机制</span></p></li></ol><ul><li><p><strong><span>持续时间</span></strong><span>：所有等级的 buff 附着后，默认持续时间为 5 秒</span></p></li><li><p><strong><span>升级机制</span></strong><span>：喷火枪的攻击具有独特的叠层强化逻辑对同一目标每攻击 1 次，buff 等级提升 1 级（首次攻击→1 级，第二次→2 级，第三次→3 级），3 级为最高等级</span></p></li><li><p><strong><span>时间重置</span></strong><span>：后续攻击仅重置持续时间，无法继续升级</span></p></li></ul><h3 id='燃烧交互机制'><strong><span>燃烧交互机制</span></strong></h3><h4 id='草丛'><strong><span>草丛</span></strong></h4><ul><li><p><strong><span>燃烧触发</span></strong><span>：当草丛被喷火枪攻击 3 次后，触发草丛燃烧消失效果</span></p></li></ul><ul><li><p><strong><span>消失时长</span></strong><span>：草丛消失后会持续 30 秒，在这期间，草丛无法作为隐藏点，区域位置会暴露出来</span></p></li><li><p><strong><span>与 buff 联动</span></strong><span>：草丛燃烧时，处于其中的玩家会直接获得 1 阶段灼烧 buff，无需额外攻击</span></p></li></ul><blockquote><div style="text-align: center;font-size: 120%;font-weight:bolder;text-shadow: 0 0 0px #676773,0 0 5px #ffffff"><span>战略意义</span></div><ul><li><p><strong><span>短期战术压制</span></strong><span>：主动发射火焰驱散隐蔽草丛，强制暴露敌方位置。灼烧效果触发移速减缓、视野弱化等负面状态，有效瓦解敌方 “蹲草突袭” 的伏击战术</span></p></li></ul><blockquote><p><span>需在 “掌控视野主动权” 与 “暴露自身位置” 间权衡：敌方大概率蹲草时，优先灼烧草丛；自身处于劣势或敌方有集火能力时，谨慎使用避免被针对</span></p></blockquote><ul><li><p><strong><span>长期战场重构</span></strong><span>：持续喷射的火焰可烧毁可破坏草丛，消除敌方天然掩体，将伏击地形转化为开阔地带，从根本上改变战场博弈格局</span></p></li></ul><blockquote><p><span>可提前规划灼烧区域，逐步压缩敌方活动空间，为团队推进创造有利地形</span></p></blockquote></blockquote><h4 id='保险柜--逃生门--禁闭室门'><strong><span>保险柜 / 逃生门 / 禁闭室门</span></strong></h4><ul><li><p><span>灼烧附着：对建筑累计攻击 2 次后，建筑获得 5 秒 “灼烧 buff 附着状态”</span></p><blockquote><p><span>精准封锁关键点位：在守保险柜、堵门等场景，灼烧建筑可迫使敌方在 “承受 buff 伤害” 与 “放弃目标” 间抉择，干扰敌方战术节奏</span></p></blockquote></li><li><p><span>范围影响：建筑处于灼烧附着状态时，0.5 格以内的敌方玩家会被自动施加 1 阶段灼烧 buff，且该状态的持续时间</span><strong><span>无法通过重复进入刷新</span></strong></p><blockquote><p><span>配合团队围堵：与队友协作，在建筑附近形成包围圈，利用 buff 持续消耗敌方血量，提升击杀 / 拦截成功率</span></p></blockquote></li></ul><blockquote><div style="text-align: center;font-size: 120%;font-weight:bolder;text-shadow: 0 0 0px #676773,0 0 5px #ffffff"><span>机制限制</span></div><ul><li><p><strong><span>阶段覆盖规则</span></strong><span>：当玩家已持有 2 阶段或 3 阶段增益效果时，建筑提供的 1 阶段增益将无法生效。</span></p></li><li><p><strong><span>时效独立机制</span></strong><span>：建筑赋予的 5 秒附着状态采用独立计时，玩家重复攻击建筑不会延长持续时间，仅在重新触发附着效果时刷新计时。</span></p></li></ul></blockquote><h4 id='buff传递'><strong><span>BUFF传递</span></strong></h4><ul><li><p><span>触发条件：同阵营玩家互相靠近至约 2 格范围内</span></p></li><li><p><strong><span>灼烧效果</span></strong><span>：敌方单位被施加灼烧 buff 后，其位置将持续暴露给我方阵营</span></p></li></ul><blockquote><div style="text-align: center;font-size: 120%;font-weight:bolder;text-shadow: 0 0 0px #676773,0 0 5px #ffffff"><span>传递规则</span></div><ol start='' ><li><p><strong><span>传递条件</span></strong><span>：仅当传递者拥有 3 阶段灼烧 buff 时，方可进行传递操作</span></p></li><li><p><strong><span>buff 限制</span></strong><span>：每次仅能传递 1 阶段灼烧 buff，且不可覆盖目标已有的 2/3 阶段灼烧 buff</span></p></li><li><p><strong><span>时效规则</span></strong><span>：从传递动作完成的瞬间起，buff 传递效果持续 5 秒</span></p></li></ol></blockquote><ul><li><p><span>团队意义：此机制显著强化同阵营间的协作能力；例如，追捕者可通过攻击释加 buff，扩大视野范围，有效增强战场感知能力，强化队伍控场能力</span></p></li></ul><h2 id='其他机制'><span>其他机制</span></h2><h3 id='与场景小道具的交互'><strong><span>与场景小道具的交互</span></strong></h3><p><span>与场景小道具的交互分为两种</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>道具类型</span></th><th style='text-align:center;' ><span>交互效果</span></th><th style='text-align:center;' ><span>示意图</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>矮道具[如小型箱子桌子]</span></td><td style='text-align:center;' ><span>火焰可穿过道具同时可击退道具</span></td><td style='text-align:center;' ><img src=".\矮道具可穿透火焰.webp" alt="高道具近距离" style="zoom: 50%;" /></td></tr><tr><td style='text-align:center;' ><span>高道具[如大型桌子]</span></td><td style='text-align:center;' ><span>火焰不可穿过道具但可击退道具</span></td><td style='text-align:center;' ><img src=".\高道具远距离.webp" alt="高道具近距离" style="zoom: 50%;" /></td></tr></tbody></table></figure><blockquote><h5 id='特殊情况'><span>特殊情况</span></h5><p><span>高道具近距离的情况下，火焰不可穿过道具但可击退道具与造成伤害</span></p><div><img src="./高道具近距离.webp" referrerpolicy="no-referrer" alt="高道具近距离" style="zoom: 50%;"></div></blockquote><h3 id='高度差'><strong><span>高度差</span></strong></h3><p><span>由于武器攻击高度起始约为 1 格</span></p><p><span>所以当逃生者跳跃时，或角色踩在小道具[如箱子、仙人掌]上时，无法攻击到敌对阵营</span></p><blockquote><p><strong><span>明确喷火枪在不同阵营中的适用性</span></strong></p><p><span>1.逃生者使用喷火枪时需注意自身位置，避免跳跃或站在小道具上攻击，影响输出时机</span></p><p><span>2.因逃生者核心目标为 “逃生”，喷火枪的 “场景交互 + 持续输出” 特性更适配追捕者的 “拦截 + 控场” 需求</span></p></blockquote><div><img src="./喷火枪高打低.webp" alt="img" style="zoom:50%;"/></div><h3 id='人造物与喷火枪之间的交互'><strong><span>人造物与喷火枪之间的交互</span></strong></h3><p><span>1.气垫</span></p><p><span>   气垫</span><strong><u><span>可造成</span></u></strong><span>弹道转弯</span>
-<span>   </span><img src=".\人造物-气垫.webp" alt="人造物-气垫" style="zoom:50%;" /></p><p><span>2.阻挡箱</span></p><p><span>   阻挡箱</span><strong><u><span>可造成</span></u></strong><span>弹道转弯</span>
-<span>   </span><img src=".\人造物-阻挡箱.webp" alt="人造物-阻挡箱" style="zoom:50%;" /></p><p><span>3.噗噗蛋</span></p><p><span>   噗噗蛋</span><strong><u><span>不可造成</span></u></strong><span>弹道转弯，但是可以使噗噗蛋立马造成缴械</span>
-<span>   </span><img src=".\人造物-噗噗蛋.webp" alt="人造物-噗噗蛋" style="zoom:50%;" /></p><h3 id='射速'><span>射速</span></h3><p><span>本项只针对13级-击倒追捕</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>攻击方式</span></th><th style='text-align:center;' ><span>无针击倒时长</span></th><th style='text-align:center;' ><span>有针击倒时长</span></th><th style='text-align:center;' ><span>推荐场景</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>点按攻击</span></td><td style='text-align:center;' ><span>2.22s</span></td><td style='text-align:center;' ><span>2.22s</span></td><td style='text-align:center;' ><span>近距离攻击（避免火焰扩散浪费输出）、追击敌方（灵活调整攻击方向）</span></td></tr><tr><td style='text-align:center;' ><span>长按攻击</span></td><td style='text-align:center;' ><span>2.22s</span></td><td style='text-align:center;' ><span>2.16s</span></td><td style='text-align:center;' ><span>敌方人数较多时（群体伤害覆盖，提升整体输出效率）</span></td></tr></tbody></table></figure><p><span>推荐近距离点按/追击时点按，人物数量多时长按</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>无针击倒对比</span><span>|</span><span>左长按右点按</span></th><th style='text-align:center;' ><span>有针击倒对比</span><span>|</span><span>左点按右长按</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><img src=".\无针击倒对比.webp" alt="无针击倒对比" style="zoom:50%;" /></td><td style='text-align:center;' ><img src=".\有针击倒对比.webp" alt="有针击倒对比" style="zoom:50%;" /></td></tr><tr><td style='text-align:center;' ><strong><span>点摁有无针击倒对比</span><span>|</span><span>左有针右无针</span></strong></td><td style='text-align:center;' ><strong><span>长摁有无针击倒对比</span><span>|</span><span>左无针右有针</span></strong></td></tr><tr><td style='text-align:center;' ><img src=".\短摁有无针击倒对比.webp" alt="短摁有无针击倒对比" style="zoom:50%;" /></td><td style='text-align:center;' ><img src=".\长摁有无针击倒对比.webp" alt="长摁有无针击倒对比" style="zoom:50%;" /></td></tr></tbody></table></figure></div></div>
-<script src="fire-page-adapter.js"></script>
+<body class='typora-export os-windows'>
+    <div class='typora-export-content'>
+        <div id='write' class=''>
+            <h1 id='逃跑吧少年喷火枪'><strong><span>《逃跑吧！少年》喷火枪</span></strong></h1>
+            <p>&nbsp;</p>
+            <h2 id='基本信息'><strong><span>基本信息</span></strong></h2>
+            <figure class='table-figure'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style='text-align:center;' ><span>伤害间隔:0.19~0.13s</span></th>
+                            <th style='text-align:center;' ><span>伤害:12[逃]13[追]</span></th>
+                            <th style='text-align:center;' ><span>换弹时间:2.8/2.5/2s</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style='text-align:center;' ><span>升级金币:200/250/300</span></td>
+                            <td style='text-align:center;' ><span>弹匣价格:100</span></td>
+                            <td style='text-align:center;' ><span>约5.5格的扇形范围，最远端宽为2格，能够适应墙体拐弯的情况</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+            <p><strong><span>武器定位:场景交互|群体伤害|持续伤害</span></strong></p>
+            
+            <h2 id='现有皮肤'><strong><span>现有皮肤</span></strong></h2>
+            <figure class='table-figure'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style='text-align:center;' ><strong><span>初始皮肤</span></strong></th>
+                            <th style='text-align:center;' ><img src="./grade1.png" alt="grade1" style="zoom:25%;" /></th>
+                            <th style='text-align:center;' ><strong><span>4级皮肤</span></strong></th>
+                            <th style='text-align:center;' ><img src="./grade4.png" alt="grade4" style="zoom:25%;" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style='text-align:center;' ><strong><span>7级皮肤</span></strong></td>
+                            <td style='text-align:center;' ><img src="./grade7.png" alt="grade7" style="zoom:25%;" /></td>
+                            <td style='text-align:center;' ><strong><span>7级皮肤[风格]</span></strong></td>
+                            <td style='text-align:center;' ><img src="./grade7_O.png" alt="grade7_O" style="zoom:25%;" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+            
+            <h2 id='特殊机制-灼烧buff'><strong><span>特殊机制-灼烧buff</span></strong></h2>
+            <p><span>喷火枪是</span><strong><span>第一个</span></strong><span>可以</span><strong><span>改变场景</span></strong><span>的道具卡，其核心特殊机制便是灼烧 buff</span></p>
+            
+            <h3 id='基础'><strong><span>基础</span></strong></h3>
+            <ol start='' ><li><p><span>等级与伤害</span></p><figure class='table-figure'><table><thead><tr>
+                                    <th style='text-align:center;' ><span>buff 等级</span></th>
+                                    <th style='text-align:center;' ><span>每秒伤害-逃生</span></th>
+                                    <th style='text-align:center;' ><span>每秒伤害-追捕</span></th>
+                                    <th style='text-align:center;' ><span>核心特性</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style='text-align:center;' ><span>1 阶段</span><img src="./fire-1.png" alt="fire-1" style="zoom:5%;" /></td>
+                                    <td style='text-align:center;' ><span>1 点</span></td>
+                                    <td style='text-align:center;' ><span>1 点</span></td>
+                                    <td style='text-align:center;' ><span>低额持续伤害，主要用于叠加层数与持续暴露视野</span></td>
+                                </tr>
+                                <tr>
+                                    <td style='text-align:center;' ><span>2 阶段</span><img src="./fire-2.png" alt="fire-1" style="zoom:5%;" /></td>
+                                    <td style='text-align:center;' ><span>1 点</span></td>
+                                    <td style='text-align:center;' ><span>1 点</span></td>
+                                    <td style='text-align:center;' ><span>低额持续伤害，为触发 3 阶段高额伤害做铺垫</span></td>
+                                </tr>
+                                <tr>
+                                    <td style='text-align:center;' ><span>3 阶段</span><img src="./fire-3.png" alt="fire-1" style="zoom:5%;" /></td>
+                                    <td style='text-align:center;' ><span>12 点</span></td>
+                                    <td style='text-align:center;' ><span>13 点</span></td>
+                                    <td style='text-align:center;' ><span>高额爆发伤害，是喷火枪造成核心输出的关键阶段</span></td>
+                                </tr></tbody></table></figure></li></ol>
+            
+            <ul><li><p><span>核心差异：1/2 阶段为低额持续伤害，3 阶段为高额爆发伤害</span></p></li>
+            </ul>
+            
+            <ol start='2' >
+                <li><p><span>持续与升级机制</span></p></li>
+            </ol>
+            
+            <ul>
+                <li><p><strong><span>持续时间</span></strong><span>：所有等级的 buff 附着后，默认持续时间为 5 秒</span></p></li>
+                <li><p><strong><span>升级机制</span></strong><span>：喷火枪的攻击具有独特的叠层强化逻辑对同一目标每攻击 1 次，buff 等级提升 1 级（首次攻击→1 级，第二次→2 级，第三次→3 级），3 级为最高等级</span></p></li>
+                <li><p><strong><span>时间重置</span></strong><span>：后续攻击仅重置持续时间，无法继续升级</span></p></li>
+            </ul>
+            
+            <h3 id='燃烧交互机制'><strong><span>燃烧交互机制</span></strong></h3>
+            <h4 id='草丛'><strong><span>草丛</span></strong></h4>
+            <ul>
+                <li><p><strong><span>燃烧触发</span></strong><span>：当草丛被喷火枪攻击 3 次后，触发草丛燃烧消失效果</span></p></li>
+            </ul>
+            
+            <ul>
+                <li><p><strong><span>消失时长</span></strong><span>：草丛消失后会持续 30 秒，在这期间，草丛无法作为隐藏点，区域位置会暴露出来</span></p></li>
+                <li><p><strong><span>与 buff 联动</span></strong><span>：草丛燃烧时，处于其中的玩家会直接获得 1 阶段灼烧 buff，无需额外攻击</span></p></li>
+            </ul>
+            
+            <blockquote>
+                <h1 id='战略意义'><span>战略意义</span></h1>
+                <ul>
+                    <li><p><strong><span>短期战术压制</span></strong><span>：主动发射火焰驱散隐蔽草丛，强制暴露敌方位置。灼烧效果触发移速减缓、视野弱化等负面状态，有效瓦解敌方 "蹲草突袭" 的伏击战术</span></p></li>
+                </ul>
+                <blockquote>
+                    <p><span>需在 "掌控视野主动权" 与 "暴露自身位置" 间权衡：敌方大概率蹲草时，优先灼烧草丛；自身处于劣势或敌方有集火能力时，谨慎使用避免被针对</span></p>
+                </blockquote>
+                <ul>
+                    <li><p><strong><span>长期战场重构</span></strong><span>：持续喷射的火焰可烧毁可破坏草丛，消除敌方天然掩体，将伏击地形转化为开阔地带，从根本上改变战场博弈格局</span></p></li>
+                </ul>
+                <blockquote>
+                    <p><span>可提前规划灼烧区域，逐步压缩敌方活动空间，为团队推进创造有利地形</span></p>
+                </blockquote>
+            </blockquote>
+            
+            <h4 id='保险柜--逃生门--禁闭室门'><strong><span>保险柜 / 逃生门 / 禁闭室门</span></strong></h4><ul><li><p><span>灼烧附着：对建筑累计攻击 2 次后，建筑获得 5 秒 "灼烧 buff 附着状态"</span></p><blockquote><p><span>精准封锁关键点位：在守保险柜、堵门等场景，灼烧建筑可迫使敌方在 "承受 buff 伤害" 与 "放弃目标" 间抉择，干扰敌方战术节奏</span></p></blockquote></li>
+            <li><p><span>范围影响：建筑处于灼烧附着状态时，0.5 格以内的敌方玩家会被自动施加 1 阶段灼烧 buff，且该状态的持续时间</span><strong><span>无法通过重复进入刷新</span></strong></p><blockquote><p><span>配合团队围堵：与队友协作，在建筑附近形成包围圈，利用 buff 持续消耗敌方血量，提升击杀 / 拦截成功率</span></p></blockquote></li></ul>
+            
+            <blockquote>
+                <h1 id='机制限制'><span>机制限制</span></h1>
+                <ul>
+                    <li><p><strong><span>阶段覆盖规则</span></strong><span>：当玩家已持有 2 阶段或 3 阶段增益效果时，建筑提供的 1 阶段增益将无法生效。</span></p></li>
+                    <li><p><strong><span>时效独立机制</span></strong><span>：建筑赋予的 5 秒附着状态采用独立计时，玩家重复攻击建筑不会延长持续时间，仅在重新触发附着效果时刷新计时。</span></p></li>
+                </ul> 
+            </blockquote>
+            
+            <h4 id='buff传递'><strong><span>BUFF传递</span></strong></h4>
+            <ul>
+                <li><p><span>触发条件：同阵营玩家互相靠近至约 2 格范围内</span></p></li>
+                <li><p><strong><span>灼烧效果</span></strong><span>：敌方单位被施加灼烧 buff 后，其位置将持续暴露给我方阵营</span></p></li>
+            </ul>
+            
+            <blockquote>
+                <h1 id='传递规则'><span>传递规则</span></h1>
+                <ol start='' >
+                    <li><p><strong><span>传递条件</span></strong><span>：仅当传递者拥有 3 阶段灼烧 buff 时，方可进行传递操作</span></p></li>
+                    <li><p><strong><span>buff 限制</span></strong><span>：每次仅能传递 1 阶段灼烧 buff，且不可覆盖目标已有的 2/3 阶段灼烧 buff</span></p></li>
+                    <li><p><strong><span>时效规则</span></strong><span>：从传递动作完成的瞬间起，buff 传递效果持续 5 秒</span></p></li>
+                </ol>
+            </blockquote>
+            
+            <ul>
+                <li><p><span>团队意义：此机制显著强化同阵营间的协作能力；例如，追捕者可通过攻击释加 buff，扩大视野范围，有效增强战场感知能力，强化队伍控场能力</span></p></li>
+            </ul>
+            
+            <h2 id='其他机制'><span>其他机制</span></h2>
+            <h3 id='与场景小道具的交互'><strong><span>与场景小道具的交互</span></strong></h3>
+            <p><span>与场景小道具的交互分为两种</span></p>
+            <figure class='table-figure'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style='text-align:center;' ><span>道具类型</span></th>
+                            <th style='text-align:center;' ><span>交互效果</span></th>
+                            <th style='text-align:center;' ><span>示意图</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style='text-align:center;' ><span>矮道具[如小型箱子桌子]</span></td>
+                            <td style='text-align:center;' ><span>火焰可穿过道具同时可击退道具</span></td>
+                            <td style='text-align:center;' ><img src="./矮道具可穿透火焰.webp" alt="高道具近距离" style="zoom: 50%;" /></td>
+                        </tr>
+                        <tr>
+                            <td style='text-align:center;' ><span>高道具[如大型桌子]</span></td>
+                            <td style='text-align:center;' ><span>火焰不可穿过道具但可击退道具</span></td>
+                            <td style='text-align:center;' ><img src="./高道具远距离.webp" alt="高道具近距离" style="zoom: 50%;" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+            
+            <blockquote>
+                <h5 id='特殊情况'><span>特殊情况</span></h5>
+                <p><span>高道具近距离的情况下，火焰不可穿过道具但可击退道具与造成伤害</span><img src="./高道具近距离.webp" alt="高道具近距离" style="zoom: 50%;" /></p>
+            </blockquote>
+            
+            <h3 id='高度差'><strong><span>高度差</span></strong></h3>
+            <p><span>由于武器攻击高度起始约为 1 格</span></p>
+            <p><span>所以当逃生者跳跃时，或角色踩在小道具[如箱子、仙人掌]上时，无法攻击到敌对阵营</span></p>
+            <blockquote>
+                <h1><span>明确喷火枪在不同阵营中的适用性</span></h1>
+                <p><span>1.逃生者使用喷火枪时需注意自身位置，避免跳跃或站在小道具上攻击，影响输出时机</span></p>
+                <p><span>2.因逃生者核心目标为 "逃生"，喷火枪的 "场景交互 + 持续输出" 特性更适配追捕者的 "拦截 + 控场" 需求</span></p>
+            </blockquote>
+            <p><img src="./喷火枪高打低.webp" alt="img" style="zoom:33%;" /></p>
+            
+            <h3 id='人造物与喷火枪之间的交互'><strong><span>人造物与喷火枪之间的交互</span></strong></h3>
+            <p><span>喷火枪与不同人造物之间的交互机制各具特色，这些交互会直接影响游戏中的战术选择</span></p>
+            
+            <figure class='table-figure'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style='text-align:center;' ><span>人造物类型</span></th>
+                            <th style='text-align:center;' ><span>交互效果</span></th>
+                            <th style='text-align:center;' ><span>战术意义</span></th>
+                            <th style='text-align:center;' ><span>示意图</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style='text-align:center;' ><span>气垫</span></td>
+                            <td style='text-align:center;' ><span><strong><u>可造成</u></strong>弹道转弯</span></td>
+                            <td style='text-align:center;' ><span>可以通过气垫改变火焰方向，实现对拐角或掩体后敌人的攻击</span></td>
+                            <td style='text-align:center;' ><img src="./人造物-气垫.webp" alt="人造物-气垫" style="zoom:50%;" /></td>
+                        </tr>
+                        <tr>
+                            <td style='text-align:center;' ><span>阻挡箱</span></td>
+                            <td style='text-align:center;' ><span><strong><u>可造成</u></strong>弹道转弯</span></td>
+                            <td style='text-align:center;' ><span>利用阻挡箱反弹火焰，能够攻击到视野外的敌人或绕过障碍物</span></td>
+                            <td style='text-align:center;' ><img src="./人造物-阻挡箱.webp" alt="人造物-阻挡箱" style="zoom:50%;" /></td>
+                        </tr>
+                        <tr>
+                            <td style='text-align:center;' ><span>噗噗蛋</span></td>
+                            <td style='text-align:center;' ><span><strong><u>不可造成</u></strong>弹道转弯，但可使噗噗蛋立即触发缴械效果</span></td>
+                            <td style='text-align:center;' ><span>能够快速解除敌方的武器使用能力，适合应对敌方的突然袭击</span></td>
+                            <td style='text-align:center;' ><img src="./人造物-噗噗蛋.webp" alt="人造物-噗噗蛋" style="zoom:50%;" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+            
+            <blockquote>
+                <h5 id='实战技巧'><span>实战技巧</span></h5>
+                <ul>
+                    <li><p><span>利用气垫和阻挡箱的反弹特性，可以在复杂地形中创造出意想不到的攻击角度</span></p></li>
+                    <li><p><span>当敌方使用喷火枪追击时，及时用立即释放噗噗蛋触发缴械效果，阻止其追击</span></p></li>
+                    <li><p><span>注意控制射击距离和角度，以充分发挥各种交互效果的战术价值</span></p></li>
+                </ul>
+            </blockquote>
+            
+            <h3 id='射速'><span>射速</span></h3>
+            <p><span>本项只针对13级-击倒追捕</span></p>
+            <figure class='table-figure'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><span>攻击方式</span></th>
+                            <th><span>无针击倒时长</span></th>
+                            <th><span>有针击倒时长</span></th>
+                            <th><span>推荐场景</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span>点按攻击</span></td>
+                            <td><span>2.22s</span></td>
+                            <td><span>2.22s</span></td>
+                            <td><span>近距离攻击（避免浪费输出导致减速）、追击敌方（灵活调整攻击方向）</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>长按攻击</span></td>
+                            <td><span>2.22s</span></td>
+                            <td><span>2.16s</span></td>
+                            <td><span>敌方人数较多时（群体伤害覆盖，提升整体输出效率）</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+            <figure class='table-figure'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><span>无针击倒对比|左长按右点按</span></th>
+                            <th><span>有针击倒对比|左点按右长按</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="./无针击倒对比.webp" alt="无针击倒对比" style="zoom:50%;" /></td>
+                            <td><img src="./有针击倒对比.webp" alt="有针击倒对比" style="zoom:50%;" /></td>
+                        </tr>
+                        <tr>
+                            <td><strong><span>点摁有无针击倒对比|左有针右无针</span></strong></td>
+                            <td><strong><span>长摁有无针击倒对比|左无针右有针</span></strong></td>
+                        </tr>
+                        <tr>
+                            <td><img src="./短摁有无针击倒对比.webp" alt="短摁有无针击倒对比" style="zoom:50%;" /></td>
+                            <td><img src="./长摁有无针击倒对比.webp" alt="长摁有无针击倒对比" style="zoom:50%;" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+        </div>
+    </div>
+    
+    <script src="fire-page-adapter.js"></script>
 </body>
 </html>
