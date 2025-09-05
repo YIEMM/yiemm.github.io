@@ -531,7 +531,6 @@ blockquote blockquote {
 table {
     padding: 0;
     word-break: initial;
-	min-width: 430px;
 }
 
 table tr {

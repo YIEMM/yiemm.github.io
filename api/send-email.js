@@ -37,15 +37,15 @@ module.exports = async (req, res) => {
         subject: `网站访问通知 - IPv6: ${ipv6}, IPv4: ${ipv4}`,
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #ff4757;">网站访问者通知</h2>
-              <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                <p><strong>IPv6 地址：</strong> ${ipv6 || '未获取到'}</p>
-                <p><strong>IPv4 地址：</strong> ${ipv4 || '未获取到'}</p>
-                <p><strong>IP来源：</strong> ${ipApiName}</p>
-                <p><strong>访问时间：</strong> ${timestamp}</p>
-                <p><strong>浏览器：</strong> ${browser}</p>
+              <h2 style="color: #ff858fff;">网站访问者通知</h2>
+              <div style="background: #3b3b3bff; padding: 20px; border-radius: 10px;">
+                <p style="color: #ffffffff;><strong>IPv6 地址：</strong> ${ipv6 || '未获取到'}</p>
+                <p style="color: #ffffffff;><strong>IPv4 地址：</strong> ${ipv4 || '未获取到'}</p>
+                <p style="color: #ffffffff;><strong>IP来源：</strong> ${ipApiName}</p>
+                <p style="color: #ffffffff;><strong>访问时间：</strong> ${timestamp}</p>
+                <p style="color: #ffffffff;><strong>浏览器：</strong> ${browser}</p>
                 <p><strong>原始JSON数据：</strong></p>
-                <pre style="background: #e9ecef; padding: 10px; border-radius: 5px; white-space: pre-wrap;">${rawJson.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+                <pre style="background: #161616ff; padding: 10px; border-radius: 5px; white-space: pre-wrap;">${rawJson.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
                 <p href="https://uutool.cn/ip/"><strong>https://uutool.cn/ip/</strong></p>
               </div>
             </div>

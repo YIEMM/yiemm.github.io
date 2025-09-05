@@ -25,11 +25,11 @@ function createSidebar() {
     // 侧边栏内容
     sidebar.innerHTML = `
         <div class="sidebar-title">目录</div>
-        <ul class="sidebar-menu">
-            <li><a href="#基本信息"><i class="fas fa-angle-right"></i>基本信息</a></li>
-            <li><a href="#特殊机制-灼烧buff"><i class="fas fa-angle-right"></i>特殊机制</a></li>
-            <li><a href="#燃烧交互机制"><i class="fas fa-angle-right"></i>燃烧交互</a></li>
-            <li><a href="#其他机制"><i class="fas fa-angle-right"></i>其他机制</a></li>
+        <ul class="sidebar-menu" style="padding-left:10px;">
+            <li style="max-width:90%;"><a href="#基本信息"><i class="fas fa-angle-right"></i>基本信息</a></li>
+            <li style="max-width:90%;"><a href="#特殊机制-灼烧buff"><i class="fas fa-angle-right"></i>特殊机制</a></li>
+            <li style="max-width:90%;"><a href="#燃烧交互机制"><i class="fas fa-angle-right"></i>燃烧交互</a></li>
+            <li style="max-width:90%;"><a href="#其他机制"><i class="fas fa-angle-right"></i>其他机制</a></li>
         </ul>
     `;
     
@@ -169,56 +169,22 @@ function addSidebarStyles() {
             position: fixed;
             top: 0;
             left: 0;
-            width: 280px;
+            width: 280px; /* 增加移动设备上的宽度 */
             height: 100vh;
             background-color: var(--card-background);
             border-right: 1px solid var(--border-color);
             padding: var(--spacing-md);
             z-index: 999;
-            /* 改进的过渡动画 */
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                        width 0.4s ease, 
-                        opacity 0.3s ease;
-            transform: translateX(-100%);
-            opacity: 0;
+           transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
+            transform: translateX(0);
             overflow-y: auto;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-lg); /* 增强阴影效果 */
         }
-        
-        .sidebar:not(.hidden) {
-            transform: translateX(0);
-            opacity: 1;
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
         }
-        
-        /* 侧边栏内容的动画效果 */
-        .sidebar-menu li {
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            margin-bottom: var(--spacing-xs);
-        }
-        
-        .sidebar:not(.hidden) .sidebar-menu li:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-        
-        .sidebar:not(.hidden) .sidebar-menu li:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-        
-        .sidebar:not(.hidden) .sidebar-menu li:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-        
-        .sidebar:not(.hidden) .sidebar-menu li:nth-child(4) {
-            transition-delay: 0.4s;
-        }
-        
-        .sidebar:not(.hidden) .sidebar-menu li {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
+
         .sidebar-title {
             font-size: var(--font-size-lg);
             font-weight: bold;
@@ -227,41 +193,42 @@ function addSidebarStyles() {
             border-bottom: 2px solid var(--primary-color);
             color: var(--primary-color);
             text-align: center;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
         }
-        
-        .sidebar:not(.hidden) .sidebar-title {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.15s;
+
+        .sidebar-menu {
+            list-style: none;
         }
-        
+
+        .sidebar-menu li {
+            margin-bottom: var(--spacing-xs);
+        }
+
         .sidebar-menu a {
             display: flex;
             align-items: center;
             gap: var(--spacing-sm);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius);
+            padding: var(--spacing-md); /* 增加内边距 */
+           border-radius: var(--border-radius);
             color: var(--text-color);
             text-decoration: none;
             transition: all var(--transition-speed) ease;
             font-size: var(--font-size-md);
-            min-height: 48px;
+            min-height: 48px; /* 确保触摸目标大小 */
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         .sidebar-menu a:hover {
             background-color: var(--hover-color);
             transform: translateX(4px);
         }
-        
+
         .sidebar-menu a.active {
             background-color: var(--hover-color);
             font-weight: 600;
             color: var(--primary-color);
         }
+
+        
         
         /* 内容区域调整 */
         .typora-export-content {
