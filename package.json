@@ -6,7 +6,6 @@
     "nodemailer": "^6.9.7"
   },
   "scripts": {
-    "build": "vercel",
     "dev": "npx http-server ./public -p 8080",
     "start": "npm run dev"
   },
