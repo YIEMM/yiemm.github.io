@@ -12,6 +12,19 @@ document.addEventListener('DOMContentLoaded', function() {
     addImageZoomFeature();
 });
 
+// 获取内容容器元素
+function getContentContainer() {
+    // 优先使用ID为write的容器（当前页面实际结构）
+    const writeContainer = document.getElementById('write');
+    if (writeContainer) {
+        // 为了保持一致性，添加typora-export-content类
+        writeContainer.classList.add('typora-export-content');
+        return writeContainer;
+    }
+    // 其次尝试使用typora-export-content类的容器
+    return document.querySelector('.typora-export-content');
+}
+
 // 创建侧边栏
 function createSidebar() {
     // 检查是否已存在侧边栏
@@ -54,7 +67,12 @@ function createSidebar() {
     // 添加切换事件
     sidebarToggle.addEventListener('click', function() {
         sidebar.classList.toggle('hidden');
-        document.querySelector('.typora-export-content').classList.toggle('sidebar-hidden');
+        
+        // 使用getContentContainer()获取内容容器
+        const contentContainer = getContentContainer();
+        if (contentContainer) {
+            contentContainer.classList.toggle('sidebar-hidden');
+        }
         
         // 更新图标
         const icon = sidebarToggle.querySelector('i');
@@ -68,9 +86,12 @@ function createSidebar() {
     });
     
     // 默认隐藏侧边栏
-    sidebar.classList.add('hidden');
-    // 默认调整内容区域
-    document.querySelector('.typora-export-content').classList.add('sidebar-hidden');
+        sidebar.classList.add('hidden');
+        // 默认调整内容区域
+        const contentContainer = getContentContainer();
+        if (contentContainer) {
+            contentContainer.classList.add('sidebar-hidden');
+        }
     
     // 添加侧边栏样式
     addSidebarStyles();
@@ -377,7 +398,7 @@ function addMobileAdaptation() {
     // 在窗口大小改变时调整侧边栏状态
     window.addEventListener('resize', function() {
         const sidebar = document.getElementById('sidebar');
-        const content = document.querySelector('.typora-export-content');
+        const content = getContentContainer();
         
         if (!sidebar || !content) return;
         
@@ -399,7 +420,7 @@ function addMobileAdaptation() {
     // 初始检查窗口大小
     if (window.innerWidth <= 768) {
         const sidebar = document.getElementById('sidebar');
-        const content = document.querySelector('.typora-export-content');
+        const content = getContentContainer();
         
         if (sidebar && content) {
             sidebar.classList.add('hidden');
@@ -438,18 +459,21 @@ function addImageZoomFeature() {
     const closeButton = viewer.querySelector('.image-viewer-close');
     
     // 为所有图片添加点击事件
-    const images = document.querySelectorAll('.typora-export-content img');
-    images.forEach(img => {
-        img.addEventListener('click', function() {
-            // 设置查看器图片源
-            viewerImage.src = this.src;
-            viewerImage.classList.remove('zoomed');
-            // 显示查看器
-            viewer.classList.add('show');
-            // 防止页面滚动
-            document.body.style.overflow = 'hidden';
+    const contentContainer = getContentContainer();
+    if (contentContainer) {
+        const images = contentContainer.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                // 设置查看器图片源
+                viewerImage.src = this.src;
+                viewerImage.classList.remove('zoomed');
+                // 显示查看器
+                viewer.classList.add('show');
+                // 防止页面滚动
+                document.body.style.overflow = 'hidden';
+            });
         });
-    });
+    }
     
     // 点击图片可以进一步放大缩小
     viewerImage.addEventListener('click', function(e) {
